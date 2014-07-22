@@ -1,7 +1,8 @@
 # Theme engine
 PRODUCT_PACKAGES += \
     ThemeChooser \
-    ThemesProvider
+    ThemesProvider \
+    LMint
 
 PRODUCT_COPY_FILES += \
     vendor/pa/configs/permissions/com.tmobile.software.themes.xml:system/etc/permissions/com.tmobile.software.themes.xml \
