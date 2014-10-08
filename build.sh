@@ -25,7 +25,11 @@ txtrst=$(tput sgr0)             # Reset
 
 # Local defaults, can be overriden by environment
 : ${PREFS_FROM_SOURCE:="false"}
+if [ `uname -s` == "Darwin" ]; then
+: ${THREADS:="$(sysctl -n machdep.cpu.core_count)"}
+else
 : ${THREADS:="$(cat /proc/cpuinfo | grep "^processor" | wc -l)"}
+fi
 
 # If there is more than one jdk installed, use latest 6.x
 if [ "`update-alternatives --list javac | wc -l`" -gt 1 ]; then
@@ -83,6 +87,9 @@ esac
 echo -e ""
 
 export DEVICE=$DEVICE
+
+#Use Prebuilt Chromium
+export USE_PREBUILT_CHROMIUM=1
 
 # Fetch latest sources
 if [ "$SYNC" == "true" ]; then
